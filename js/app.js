@@ -44,8 +44,23 @@ var initMap = function() {
 var ViewModel = function(){
   var self = this;
   this.placesList = ko.observableArray([]);
-  places.forEach(function(place){
+  self.query = ko.observable('');
+
+  places.forEach(
+    function(place){
     self.placesList.push(new Model(place));
+  });
+  self.filteredPlaces = ko.computed( function () {
+    if(self.query()==undefined){
+      return self.placesList();
+    }
+    else{
+      return self.placesList()
+        .filter(placeItem => placeItem.name().toLowerCase().indexOf(self.query().toLowerCase()) > -1);
+    }
+
+  });
+  console.log(self.placesList());
 }
 
 var Model = function(place){
@@ -55,4 +70,4 @@ var Model = function(place){
 }
 
 
-ko.applyBindings(new ViewModel());
+ko.applyBindings(new ViewModel())

@@ -6,12 +6,34 @@ html, body
 }
 #searchbox{
   padding: 0px 10px;
-  height: 100%;
+  height: 75%;
   width: auto;
   float: left;
+  background-color: grey;
 }
 #map{
-  height: 100%;
+  height: 75%;
   width: 75%;
   float:right;
+}
+#places{
+  list-style-type: none;
+}
+.placeitems{
+  margin: 20px 0px;
+}
+.placeitems a{
+text-decoration: none;
+}
+.placeitems a:visited{
+  color: black;
+}
+#search{
+  height: 30px;
+  width: 100%;
+}
+
+#details{
+  height: auto;
+  margin-top: 10px;
 }
