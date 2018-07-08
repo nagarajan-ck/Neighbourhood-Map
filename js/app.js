@@ -45,12 +45,14 @@ var ViewModel = function(){
   var self = this;
   this.placesList = ko.observableArray([]);
   self.query = ko.observable('');
+  self.detail = ko.observable('Click on a place to get more details about it.');
 
   places.forEach(
     function(place){
     self.placesList.push(new Model(place));
   });
-  self.filteredPlaces = ko.computed( function () {
+
+  self.filteredPlaces = ko.computed(function () {
     if(self.query()==undefined){
       return self.placesList();
     }
@@ -60,7 +62,11 @@ var ViewModel = function(){
     }
 
   });
-  console.log(self.placesList());
+
+  this.locationTracker = function (data) {
+    clickedPlace = data.name();
+    self.detail('Loading more details about '+ data.name()+'...');
+  }
 }
 
 var Model = function(place){
@@ -68,6 +74,7 @@ var Model = function(place){
   this.location = ko.observable(place.location);
   //filtered goes here
 }
+
 
 
 ko.applyBindings(new ViewModel())
