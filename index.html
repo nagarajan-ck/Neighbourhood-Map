@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Neighborhood Map</title>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnMyvo8znXVisYxkgdGsFXn-25uqNWHCM&v=3&callback=initMap">
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -19,13 +22,19 @@
   </div>
 
     <div id="details">
-    <div id="wiki"><h4>Wikipedia Articles</h4></div>
-    <div id="nyt"><h4>New York Times Articles</h4></div>
+
+      <div id="wiki">
+      <h4>Wikipedia Articles</h4>
+      <div data-bind='text:wikiDetail'></div>
+      </div>
+
+      <div id="nyt">
+        <h4>New York Times Articles</h4>
+        <div data-bind='text:nytDetail'></div>
+      </div>
+
     </div>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnMyvo8znXVisYxkgdGsFXn-25uqNWHCM&v=3&callback=initMap">
-    </script>
     <script src="js/knockout.js"></script>
     <script src="js/app.js"></script>
 
