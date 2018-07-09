@@ -41,3 +41,13 @@ text-decoration: none;
   height: 75%;
   width: 100%;
 }
+#wiki{
+  height: 100%;
+  width:50%;
+  float: left;
+}
+#nyt{
+  height: 100%;
+  width: 50%;
+  float: right;
+}

@@ -38,7 +38,8 @@ var initMap = function() {
     markers.push(marker);
     marker.addListener('click',function () {
       this.setAnimation(4);
-      console.log(this.title);
+      clickedPlace = this.title;
+      retrieveDetails(clickedPlace);
   });
   }
 }
@@ -48,7 +49,6 @@ var ViewModel = function(){
   var self = this;
   this.placesList = ko.observableArray([]);
   self.query = ko.observable('');
-  self.detail = ko.observable('Click on a place to get more details about it.');
 
   places.forEach(
     function(place){
@@ -72,11 +72,30 @@ var ViewModel = function(){
         markers[i].setAnimation(4);
         break;
       }
-
     }
     clickedPlace = data.name();
-    self.detail('Loading more details about '+ data.name()+'...');
+    retrieveDetails(clickedPlace);
   }
+}
+
+var retrieveDetails = function (place){
+    $ = jQuery;
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    url += '?' + $.param({
+        'api-key': "fda9404d908a42dc91872b8410bd6bd6",
+        'q': place
+    });
+    $.getJSON(url, function (data) {
+          articles = data['response']['docs'];
+          $('#nyt').html('<h4>NYT Articles about '+place+'</h4>')
+          for( var i = 0;i< articles.length; ++i){
+            // console.log(articles[i]['web_url']);
+              $('#nyt').append('<br><a href="'+articles[i]['web_url']+'">'+articles[i]['headline']['main']+'</a><br><br>');
+
+          }
+        }).fail(function () {
+          $('#nyt').append('<br>Sorry, New York Times articles could not be loaded')
+        });
 }
 
 var Model = function(place){
