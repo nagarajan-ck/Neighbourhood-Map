@@ -17,6 +17,7 @@ var places = [
 
 
 
+var markers = [];
 var initMap = function() {
   var map;
   map = new google.maps.Map(document.getElementById('map'),{
@@ -24,7 +25,6 @@ var initMap = function() {
           zoom:13
         });
   var marker;
-  var markers = [];
   for (var i = 0; i< places.length; i++){
     var coordinates = places[i].location;
     var name = places[i].name;
@@ -36,7 +36,10 @@ var initMap = function() {
       id : i
     });
     markers.push(marker);
-    //add marker click funtion here
+    marker.addListener('click',function () {
+      this.setAnimation(4);
+      console.log(this.title);
+  });
   }
 }
 
@@ -64,6 +67,13 @@ var ViewModel = function(){
   });
 
   this.locationTracker = function (data) {
+    for(var i=0; i<markers.length; ++i){
+      if(markers[i].title == data.name()){
+        markers[i].setAnimation(4);
+        break;
+      }
+
+    }
     clickedPlace = data.name();
     self.detail('Loading more details about '+ data.name()+'...');
   }
@@ -75,6 +85,6 @@ var Model = function(place){
   //filtered goes here
 }
 
-
+// need to addfunction to bounce when anchor tag selected and a common function for displaying details by passing the name
 
 ko.applyBindings(new ViewModel())
