@@ -12,7 +12,7 @@
       <h3>Search here for the places on the map</h3>
       <input id="search" data-bind="value: query, valueUpdate: 'keyup'" type="text">
       <ul id="places" data-bind='foreach:filteredPlaces'>
-        <li class="placeitems"><a href='#' data-bind= 'text:name,click:$parent.locationTracker'></a></li>
+        <li class="placeitems"><a href='#' data-bind='text:name,click:$parent.locationTracker'></a></li>
       </ul>
     </div>
     <div id="map"></div>

@@ -5,10 +5,10 @@ var places = [
   { name: 'Cubbon Park',
   location: {lat : 12.976347, lng : 77.592928}
   },
-  { name: 'Lal Bagh',
+  { name: 'Lal Bagh Botanical Gardens',
   location: {lat : 12.950743, lng : 77.584777}
   },
-  { name: 'Tipu Sultan Palace',
+  { name: "Tipu Sultan's Summer Palace",
   location: {lat : 12.959342, lng : 77.573625}
   },
   { name: 'Vidhana Soudha',
@@ -79,31 +79,42 @@ var ViewModel = function(){
 }
 
 var retrieveDetails = function (place){
-    $ = jQuery;
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    url += '?' + $.param({
+    var nyturl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    nyturl += '?' + $.param({
         'api-key': "fda9404d908a42dc91872b8410bd6bd6",
         'q': place
     });
-    $.getJSON(url, function (data) {
+    $('#nyt').html('<h4>New York Times Articles about '+place+'</h4>')
+    $.getJSON(nyturl, function (data) {
           articles = data['response']['docs'];
-          $('#nyt').html('<h4>NYT Articles about '+place+'</h4>')
           for( var i = 0;i< articles.length; ++i){
-            // console.log(articles[i]['web_url']);
               $('#nyt').append('<br><a href="'+articles[i]['web_url']+'">'+articles[i]['headline']['main']+'</a><br><br>');
-
           }
         }).fail(function () {
-          $('#nyt').append('<br>Sorry, New York Times articles could not be loaded')
+          $('#nyt').append('<br>Sorry, New York Times articles could not be loaded.')
         });
+    //calls to nyt api ends here
+    //calls to wiki api starts here
+
+    var wikiurl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&callback=wikiCallback&search='+place;
+    $('#wiki').html('<h4>Wikipedia articles about '+place+'</h4>')
+    var wikiRequestTimeout = setTimeout(function () {
+      $('#wiki').append('<br>Sorry, Wikipedia articles could not be loaded.')
+    }, 2000);
+    $.ajax(wikiurl, {
+      dataType: "jsonp",
+      success : function (response) {
+        $('#wiki').append('<a href="'+response[3][0]+'">'+response[0]+'</a><br><p>'+response[2][0]+'</p><br>')
+      }
+
+    });
+
 }
 
 var Model = function(place){
   this.name = ko.observable(place.name);
   this.location = ko.observable(place.location);
-  //filtered goes here
 }
 
-// need to addfunction to bounce when anchor tag selected and a common function for displaying details by passing the name
 
 ko.applyBindings(new ViewModel())
