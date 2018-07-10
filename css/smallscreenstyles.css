@@ -1,16 +1,15 @@
-html, body
-{
+html, body {
    height: 100%;
    width: 100%;
    margin: 0;
    background-color: #c2beb0;
    padding: 0;
 }
-#mainarea{
+#mainarea {
   height: 75%;
   width: 100%;
 }
-#searchbox{
+#searchbox {
   height: 50%;
   padding: 0px 10px;
   background-color: grey;
@@ -18,39 +17,39 @@ html, body
 #searchbox h3 {
   margin: 0px;
 }
-#map{
+#map {
   height: 50%;
 }
-#places{
+#places {
   list-style-type: none;
   width: 75%;
   margin: 0px;
 }
-.placeitems{
+.placeitems {
   margin-top: 5%;
 }
-.placeitems a{
+.placeitems a {
 text-decoration: none;
 }
-.placeitems a:visited{
+.placeitems a:visited {
   color: black;
 }
-#search{
+#search {
   height: 20px;
   width: 80%;
   position: center;
 }
 
-#details{
+#details {
   margin-top: 0px;
   height: auto;
   background-color: #c2beb0;
 }
-#wiki{
+#wiki {
   width:auto;
   padding: 10px;
 }
 
-#wiki h4, #nyt h4{
+#wiki h4, #nyt h4 {
   margin-top: 5px;
 }
