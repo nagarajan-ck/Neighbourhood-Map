@@ -2,12 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Neighborhood Map</title>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnMyvo8znXVisYxkgdGsFXn-25uqNWHCM&v=3&callback=initMap">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" media="screen and (min-width:750px)" href="css/bigscreenstyles.css">
+    <link rel="stylesheet" media="screen and (max-width:749px)" href="css/smallscreenstyles.css">
   </head>
   <body>
     <div id="mainarea">
@@ -24,14 +26,11 @@
     <div id="details">
 
       <div id="wiki">
-      <h4>Wikipedia Articles</h4>
-      <div data-bind='text:wikiDetail'></div>
+      <h4 data-bind='text:wikiDetail'></h4>
+      <a data-bind="attr: { href: wikiurl }"><span data-bind="text: details"></span></a>
+      <p data-bind='text:extras'></p>
       </div>
 
-      <div id="nyt">
-        <h4>New York Times Articles</h4>
-        <div data-bind='text:nytDetail'></div>
-      </div>
 
     </div>
 
