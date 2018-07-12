@@ -61,13 +61,13 @@ var ViewModel = function(){
     else {
       arr =  self.placesList()
         .filter(placeItem => placeItem.name().toLowerCase().indexOf(self.query().toLowerCase()) > -1);
-      // filtering code source: Stackoverflow. The places list is filtered upon the condition that
-      // updates the items such that only places that are superset of the input is returned
+      // filtering code source: Stackoverflow. The places list is filtered upon
+      // the condition that the items that are superset of the input is returned
 
-      // removes the initial markers from the map and nullifies markers list
       for (var i = 0; i < markers.length; i++) {
          markers[i].setMap(null);
       }
+      // removes the initial markers from the map and nullifies markers list
       markers=[];
       var marker;
       // creates new markers according to the filtered list
