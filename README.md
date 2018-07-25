@@ -8,7 +8,7 @@ Regardless of what device you use to view the application, it renders accordingl
 
 ## REQUIREMENTS
 
-The application requires a latest internet browser and a working internet connection to load the map and also retrieve Wikipedia articles about it.
+The application requires a latest internet browser(Google Chrome recommended) and a working internet connection to load the map and also retrieve Wikipedia articles about it.
 
 ## RUNNING THE APP
 
